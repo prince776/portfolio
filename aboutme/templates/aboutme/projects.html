@@ -1,0 +1,45 @@
+{% extends "aboutme/base.html" %}
+
+{% block content %}
+
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Projects</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="service_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-65">
+                    <span>Skills</span>
+                    <h3>Just some things <br>
+                        I have done.</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service text-center">
+                    <!-- <div class="icon">
+                        <img src="img/svg_icon/1.svg" alt="">
+                    </div> -->
+                    <h3>{{ project.project_title}}</h3>
+                    <p>{{ project.project_description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

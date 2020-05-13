@@ -1,0 +1,71 @@
+{% extends "aboutme/base.html" %}
+
+{% block content %}
+
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Jobs</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="service_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-65">
+                    <span>Completed</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for job in jobs_done %}
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service text-center">
+                    <!-- <div class="icon">
+                        <img src="img/svg_icon/1.svg" alt="">
+                    </div> -->
+                    <h3>{{ job.job_title}}</h3>
+                    <p>{{ job.job_description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% if jobs_current__length > 0 %}
+<div class="service_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-65">
+                    <span>Current</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for job in jobs_current %}
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service text-center">
+                    <!-- <div class="icon">
+                        <img src="img/svg_icon/1.svg" alt="">
+                    </div> -->
+                    <h3>{{ job.job_title}}</h3>
+                    <p>{{ job.job_description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

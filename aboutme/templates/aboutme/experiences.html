@@ -7,14 +7,14 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="bradcam_text text-center">
-                    <h3>Jobs</h3>
+                    <h3>Experiences</h3>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
+{% if exp_done %}
 <div class="service_area">
     <div class="container">
         <div class="row">
@@ -26,22 +26,25 @@
             </div>
         </div>
         <div class="row">
-            {% for job in jobs_done %}
-            <div class="col-xl-4 col-md-4">
+            {% for exp in exp_done %}
+            <div class="col-xl-12 col-md-12">
                 <div class="single_service text-center">
                     <!-- <div class="icon">
                         <img src="img/svg_icon/1.svg" alt="">
                     </div> -->
-                    <h3>{{ job.job_title}}</h3>
-                    <p>{{ job.job_description}}</p>
+                    <h3>{{ exp.exp_title}}</h3>
+                    <h4>Start Date: {{exp.start_date|date:'d-m-Y'}}</h4>
+                    <h4>End Date: {{exp.end_date|date:'d-m-Y'}}</h4>
+                    <p>{{ exp.exp_description}}</p>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
+{% endif %}
 
-{% if jobs_current__length > 0 %}
+{% if exp_current %}
 <div class="service_area">
     <div class="container">
         <div class="row">
@@ -52,14 +55,15 @@
             </div>
         </div>
         <div class="row">
-            {% for job in jobs_current %}
-            <div class="col-xl-4 col-md-4">
+            {% for exp in exp_current %}
+            <div class="col-xl-12 col-md-12">
                 <div class="single_service text-center">
                     <!-- <div class="icon">
                         <img src="img/svg_icon/1.svg" alt="">
                     </div> -->
-                    <h3>{{ job.job_title}}</h3>
-                    <p>{{ job.job_description}}</p>
+                    <h3>{{ exp.exp_title}}</h3>
+                    <h4>Start Date: {{exp.start_date|date:'d-m-Y'}} </h4>
+                    <p>{{ exp.exp_description}}</p>
                 </div>
             </div>
             {% endfor %}

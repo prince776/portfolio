@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{% static 'aboutme/css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'aboutme/css/slicknav.css' %}">
     <link rel="stylesheet" href="{% static 'aboutme/css/style.css' %}">
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <link rel="stylesheet" href="{% static 'aboutme/css/responsive.css' %}">
 </head>
 
 <body style="overflow-x: hidden;">
@@ -41,7 +41,7 @@
             <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-xl-6 col-lg-7">
+                        <div class="col-xl-7 col-lg-8">
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
@@ -49,8 +49,9 @@
                                         <li><a href="{% url 'aboutme:about' %}">About</a></li>
                                         <li><a href="{% url 'aboutme:skills' %}">Skills</a></li>
                                         <li><a href="{% url 'aboutme:projects' %}">Projects</a></li>
-                                        <li><a href="{% url 'aboutme:jobs' %}">Jobs</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="{% url 'aboutme:experiences' %}">Experiences</a></li>
+                                        <li><a href="{% url 'aboutme:certificates' %}">Certificates</a></li>
+                                        <!-- <li><a href="blog.html">Blog</a></li> -->
                                         <li><a href="{% url 'aboutme:contact' %}">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -174,10 +175,28 @@
                     <div class="col-xl-6 col-md-6">
                         <div class="socail_links">
                             <ul>
-                                <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-twitter"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-google-plus"></i> </a></li>
+                                {% if me.link_linkedin %}
+                                <li><a href={{me.link_linkedin}} target="_blank"> <i class="fa fa-linkedin"></i> </a>
+                                </li>
+                                {% endif %}
+
+                                {% if me.link_github %}
+                                <li><a href={{me.link_github}} target="_blank"> <i class="fa fa-github"></i> </a></li>
+                                {% endif %}
+
+                                {% if me.link_twitter %}
+                                <li><a href={{me.link_twitter}} target="_blank"> <i class="fa fa-twitter"></i> </a></li>
+                                {% endif %}
+
+                                {% if me.link_facebook %}
+                                <li><a href={{me.link_facebook}} target="_blank"> <i class="fa fa-facebook"></i> </a>
+                                </li>
+                                {% endif %}
+
+                                {% if me.link_instagram %}
+                                <li><a href={{me.link_instagram}} target="_blank"> <i class="fa fa-instagram"></i> </a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>

@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.contrib import messages
 
-from .models import Skill, Project, Job, Me
+from .models import Skill, Project, Experience, Me, Certificate
 
 
 def home(request):
@@ -13,7 +13,7 @@ def home(request):
 
     total_skills = Skill.objects.count()
     total_projects = Project.objects.count()
-    total_jobs = Job.objects.count()
+    total_experiences = Experience.objects.count()
 
     me = Me.objects.filter(active=True)[0]
 
@@ -22,7 +22,7 @@ def home(request):
         'top_projects': top_projects,
         'total_skills': total_skills,
         'total_projects': total_projects,
-        'total_jobs': total_jobs,
+        'total_experiences': total_experiences,
         'me': me,
     }
 
@@ -32,14 +32,14 @@ def home(request):
 def about(request):
     total_skills = Skill.objects.count()
     total_projects = Project.objects.count()
-    total_jobs = Job.objects.count()
+    total_experiences = Experience.objects.count()
 
     me = Me.objects.filter(active=True)[0]
 
     context = {
         'total_skills': total_skills,
         'total_projects': total_projects,
-        'total_jobs': total_jobs,
+        'total_experiences': total_experiences,
         'me': me,
     }
 
@@ -48,9 +48,11 @@ def about(request):
 
 def skills(request):
     skills = Skill.objects.order_by('-skill_priority')
+    me = Me.objects.filter(active=True)[0]
 
     context = {
-        'skills': skills
+        'skills': skills,
+        'me': me,
     }
 
     return render(request, 'aboutme/skills.html', context)
@@ -58,25 +60,42 @@ def skills(request):
 
 def projects(request):
     projects = Project.objects.order_by('-project_priority')
+    me = Me.objects.filter(active=True)[0]
 
     context = {
-        'projects': projects
+        'projects': projects,
+        'me': me,
     }
 
     return render(request, 'aboutme/projects.html', context)
 
 
-def jobs(request):
-    jobs_done = Job.objects.filter(completed=True).order_by('-job_priority')
-    jobs_current = Job.objects.filter(
-        completed=False).order_by('-job_priority')
+def certificates(request):
+    certificates = Certificate.objects.order_by('-certificate_priority')
+    me = Me.objects.filter(active=True)[0]
 
     context = {
-        'jobs_done': jobs_done,
-        'jobs_current': jobs_current
+        'certificates': certificates,
+        'me': me
     }
 
-    return render(request, 'aboutme/jobs.html', context)
+    return render(request, 'aboutme/certificates.html', context)
+
+
+def experiences(request):
+    exp_done = Experience.objects.filter(
+        completed=True).order_by('-exp_priority')
+    exp_current = Experience.objects.filter(
+        completed=False).order_by('-exp_priority')
+    me = Me.objects.filter(active=True)[0]
+
+    context = {
+        'exp_done': exp_done,
+        'exp_current': exp_current,
+        'me': me,
+    }
+
+    return render(request, 'aboutme/experiences.html', context)
 
 
 def contact(request):

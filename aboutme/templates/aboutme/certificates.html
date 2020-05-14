@@ -1,0 +1,51 @@
+{% extends "aboutme/base.html" %}
+
+{% block content %}
+
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Certificates</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="service_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-65">
+                    <span>Certificates</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for certificate in certificates %}
+            <div class="col-xl-12 col-md-12">
+                <div class="single_service text-center" style="overflow-x: auto;">
+                    <!-- <div class="icon">
+                        <img src="img/svg_icon/1.svg" alt="">
+                    </div> -->
+                    <h3>{{ certificate.certificate_title}}</h3>
+                    <h4>Issue Date: <strong>{{certificate.issue_date|date:'m-Y'}}</strong></h4>
+                    {% if certificate.expires %}
+                    <h4>Expiration Date: <strong></strong>{{certificate.expiration_date|date:'m-Y'}}</strong></h4>
+                    {% endif %}
+                    <h4>Issuer: <strong>{{ certificate.certificate_issuer}}</strong></h4>
+                    <h4>Id: <strong>{{ certificate.certificate_credential_id }}</strong></h4>
+                    <h4>URL: <strong>{{ certificate.certificate_credential_url }}</strong></h4>
+                    <h5>Click <a href="{{certificate.certificate_credential_url}}" target="_blank">here</a> to visit.
+                    </h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
